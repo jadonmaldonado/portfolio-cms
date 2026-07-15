@@ -44,7 +44,7 @@ This project demonstrates experience with:
 
 ## High-Level Architecture
 
-> Architecture diagram coming soon.
+![System Architecture](docs/diagrams/system-architecture.png)
 
 ---
 
