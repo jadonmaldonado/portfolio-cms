@@ -44,7 +44,7 @@ This project demonstrates experience with:
 
 ## High-Level Architecture
 
-![System Architecture](docs/diagrams/system-architecture.png)
+![System Architecture](docs/diagrams/AWSP1.png)
 
 ---
 
