@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">Admin Console</p>
+    <h1>Portfolio CMS Dashboard</h1>
+    <p class="subtitle">Manage projects, certifications, website content, and uploads from one place.</p>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="card">
+    <h2>Projects</h2>
+    <p class="stat">6</p>
+    <span class="muted">Published and draft projects</span>
+  </div>
+
+  <div class="card">
+    <h2>Certifications</h2>
+    <p class="stat">2</p>
+    <span class="muted">AWS certs and future additions</span>
+  </div>
+
+  <div class="card">
+    <h2>Resume</h2>
+    <p class="stat">Uploaded</p>
+    <span class="muted">Current public resume PDF</span>
+  </div>
+
+  <div class="card">
+    <h2>About Content</h2>
+    <p class="stat">Live</p>
+    <span class="muted">Hero text and contact info</span>
+  </div>
+</section>
+
+<section class="actions">
+  <div class="card">
+    <h2>Quick Actions</h2>
+    <div class="button-row">
+      <a class="button" href="/projects">Add Project</a>
+      <a class="button" href="/certifications">Add Certification</a>
+      <a class="button" href="/content">Edit About</a>
+      <a class="button" href="/uploads">Upload Resume</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
