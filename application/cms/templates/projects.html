@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">Content Manager</p>
+    <h1>Projects</h1>
+    <p class="subtitle">Manage the projects that appear on your public portfolio site.</p>
+  </div>
+</section>
+
+<section class="actions">
+  <div class="card">
+    <h2>Quick Actions</h2>
+    <div class="button-row">
+      <a class="button" href="/projects/new">+ New Project</a>
+    </div>
+  </div>
+</section>
+
+<section class="project-list">
+  {% for project in projects %}
+  <div class="card project-card">
+    <div class="project-header">
+      <div>
+        <h2>{{ project.title }}</h2>
+        <p class="muted">{{ project.status }}</p>
+      </div>
+      <div class="project-links">
+        <a href="{{ project.github }}" target="_blank">GitHub</a>
+        {% if project.live %}
+        <a href="{{ project.live }}" target="_blank">Live</a>
+        {% endif %}
+      </div>
+    </div>
+    <p>{{ project.description }}</p>
+    <div class="project-actions">
+      <a href="#">Edit</a>
+      <a href="#">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}
