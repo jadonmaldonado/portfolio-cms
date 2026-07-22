@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <div>
+        <p class="eyebrow">Content Manager</p>
+        <h1>Edit Project</h1>
+        <p class="subtitle">Update an existing project in your portfolio.</p>
+    </div>
+</section>
+
+<form action="{{ url_for('projects.edit_project', project_id=project.id) }}" method="POST">
+
+    <div class="card">
+        <h2>Project Information</h2>
+
+        <label>Project Name</label><br>
+        <input type="text" name="title" value="{{ project.title }}" style="width:100%;"><br><br>
+
+        <label>Technologies Used</label><br>
+        <input type="text" name="tech_stack" value="{{ project.tech_stack }}" style="width:100%;"><br><br>
+
+        <label>Description</label><br>
+        <textarea name="description" rows="6" style="width:100%;">{{ project.description }}</textarea>
+    </div>
+
+    <br>
+
+    <div class="card">
+        <h2>Project Links</h2>
+
+        <label>GitHub URL</label><br>
+        <input type="url" name="github" value="{{ project.github }}" style="width:100%;"><br><br>
+
+        <label>Live Demo URL</label><br>
+        <input type="url" name="live" value="{{ project.live or '' }}" style="width:100%;">
+    </div>
+
+    <br>
+
+    <div class="card">
+        <h2>Publishing</h2>
+
+        <label>
+            <input type="checkbox" name="featured" {% if project.featured %}checked{% endif %}>
+            Featured Project
+        </label>
+
+        <br><br>
+
+        <label>Status</label><br>
+        <select name="status">
+            <option value="Draft" {% if project.status == "Draft" %}selected{% endif %}>Draft</option>
+            <option value="Published" {% if project.status == "Published" %}selected{% endif %}>Published</option>
+        </select>
+    </div>
+
+    <br>
+
+    <button class="button" type="submit">Save Project</button>
+</form>
+
+{% endblock %}
