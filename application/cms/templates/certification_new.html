@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <div>
+        <p class="eyebrow">Content Manager</p>
+        <h1>New Certification</h1>
+    </div>
+</section>
+
+<form action="{{ url_for('certifications.new_certification') }}" method="POST">
+
+<div class="card">
+
+<label>Certification Name</label><br>
+<input type="text" name="name" style="width:100%;"><br><br>
+
+<label>Issuer</label><br>
+<input type="text" name="issuer" style="width:100%;"><br><br>
+
+<label>Credential URL</label><br>
+<input type="url" name="credential_url" style="width:100%;"><br><br>
+
+<label>Status</label><br>
+
+<select name="status">
+    <option value="Active">Active</option>
+    <option value="Expired">Expired</option>
+</select>
+
+<br><br>
+
+<button class="button" type="submit">
+    Save Certification
+</button>
+
+</div>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <div>
+        <p class="eyebrow">Content Manager</p>
+        <h1>About Me</h1>
+        <p class="subtitle">Manage your portfolio information.</p>
+    </div>
+</section>
+
+<form action="{{ url_for('about.about') }}" method="POST">
+
+<div class="card">
+
+    <label>Name</label><br>
+    <input type="text"
+           name="name"
+           value="{{ content.name or '' }}"
+           style="width:100%;"><br><br>
+
+    <label>Headline</label><br>
+    <input type="text"
+           name="headline"
+           value="{{ content.headline or '' }}"
+           style="width:100%;"><br><br>
+
+    <label>About Me</label><br>
+    <textarea
+        name="about"
+        rows="8"
+        style="width:100%;">{{ content.about or '' }}</textarea>
+
+    <br><br>
+
+    <label>Email</label><br>
+    <input type="email"
+           name="email"
+           value="{{ content.email or '' }}"
+           style="width:100%;"><br><br>
+
+    <label>GitHub</label><br>
+    <input type="url"
+           name="github"
+           value="{{ content.github or '' }}"
+           style="width:100%;"><br><br>
+
+    <label>LinkedIn</label><br>
+    <input type="url"
+           name="linkedin"
+           value="{{ content.linkedin or '' }}"
+           style="width:100%;"><br><br>
+
+    <button class="button" type="submit">
+        Save Changes
+    </button>
+
+</div>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <div>
+        <p class="eyebrow">Content Manager</p>
+        <h1>Edit Certification</h1>
+    </div>
+</section>
+
+<form action="{{ url_for('certifications.edit_certification', certification_id=certification.id) }}"
+      method="POST">
+
+<div class="card">
+
+<label>Certification Name</label><br>
+<input type="text"
+       name="name"
+       value="{{ certification.name }}"
+       style="width:100%;"><br><br>
+
+<label>Issuer</label><br>
+<input type="text"
+       name="issuer"
+       value="{{ certification.issuer }}"
+       style="width:100%;"><br><br>
+
+<label>Credential URL</label><br>
+<input type="url"
+       name="credential_url"
+       value="{{ certification.credential_url }}"
+       style="width:100%;"><br><br>
+
+<label>Status</label><br>
+
+<select name="status">
+    <option value="Active" {% if certification.status == "Active" %}selected{% endif %}>Active</option>
+    <option value="Expired" {% if certification.status == "Expired" %}selected{% endif %}>Expired</option>
+</select>
+
+<br><br>
+
+<button class="button" type="submit">
+    Save Certification
+</button>
+
+</div>
+
+</form>
+
+{% endblock %}
