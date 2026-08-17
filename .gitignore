@@ -2,5 +2,16 @@
 __pycache__/
 
 application/cms/instance/
+application/cms/uploads/
+
 *.db
 *.pyc
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# Local Terraform diagnostics
+infrastructure/terraform/ec2-console.txt
