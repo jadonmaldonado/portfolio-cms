@@ -37,3 +37,13 @@ variable "github_branch" {
   type    = string
   default = "feature/certifications"
 }
+
+variable "db_username" {
+  type    = string
+  default = "portfolioadmin"
+}
+
+variable "db_name" {
+  type    = string
+  default = "portfolio"
+}
