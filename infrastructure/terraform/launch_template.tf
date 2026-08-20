@@ -33,6 +33,9 @@ resource "aws_launch_template" "app" {
     github_branch  = var.github_branch
     aws_region     = var.aws_region
     s3_bucket_name = var.s3_bucket_name
+    db_secret_arn  = aws_secretsmanager_secret.db.arn
+    db_endpoint    = aws_db_instance.portfolio.address
+    db_port        = aws_db_instance.portfolio.port
   }))
 
   tag_specifications {

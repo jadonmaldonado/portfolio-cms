@@ -58,3 +58,23 @@ resource "aws_iam_instance_profile" "app" {
   name = "${var.project_name}-instance-profile"
   role = aws_iam_role.app.name
 }
+
+data "aws_iam_policy_document" "app_secrets" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "secretsmanager:GetSecretValue"
+    ]
+
+    resources = [
+      aws_secretsmanager_secret.db.arn
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "app_secrets" {
+  name   = "${var.project_name}-secrets-access"
+  role   = aws_iam_role.app.id
+  policy = data.aws_iam_policy_document.app_secrets.json
+}

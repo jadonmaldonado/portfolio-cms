@@ -19,6 +19,30 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 python -m pip install gunicorn
 
+python - <<'PY'
+import json
+import boto3
+
+secret_arn = "${db_secret_arn}"
+region = "${aws_region}"
+
+client = boto3.client("secretsmanager", region_name=region)
+response = client.get_secret_value(SecretId=secret_arn)
+secret = json.loads(response["SecretString"])
+
+with open("/etc/portfolio-cms.env", "w") as f:
+    f.write(
+        "DATABASE_URL="
+        f"postgresql+psycopg://{secret['username']}:{secret['password']}"
+        f"@${db_endpoint}:${db_port}/{secret['dbname']}\n"
+    )
+    f.write("AWS_DEFAULT_REGION=${aws_region}\n")
+    f.write("S3_BUCKET_NAME=${s3_bucket_name}\n")
+    f.write("SECRET_KEY=dev-secret-key\n")
+PY
+
+chmod 600 /etc/portfolio-cms.env
+
 cat > /etc/systemd/system/portfolio-cms.service <<EOF
 [Unit]
 Description=Portfolio CMS Flask Application
@@ -27,9 +51,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/opt/portfolio-cms/application/cms
-Environment="AWS_DEFAULT_REGION=${aws_region}"
-Environment="S3_BUCKET_NAME=${s3_bucket_name}"
-Environment="SECRET_KEY=dev-secret-key"
+EnvironmentFile=/etc/portfolio-cms.env
 ExecStart=/opt/portfolio-cms/application/cms/.venv/bin/gunicorn --bind 0.0.0.0:5000 app:app
 Restart=always
 
