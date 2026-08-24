@@ -35,7 +35,7 @@ variable "github_repo" {
 
 variable "github_branch" {
   type    = string
-  default = "feature/certifications"
+  default = "feature/projects"
 }
 
 variable "db_username" {
