@@ -43,6 +43,18 @@ PY
 
 chmod 600 /etc/portfolio-cms.env
 
+python -c "
+from app import app
+from extensions import db
+from models.project import Project
+from models.certification import Certification
+from models.site_content import SiteContent
+from models.resume import Resume
+
+with app.app_context():
+    db.create_all()
+"
+
 cat > /etc/systemd/system/portfolio-cms.service <<EOF
 [Unit]
 Description=Portfolio CMS Flask Application
