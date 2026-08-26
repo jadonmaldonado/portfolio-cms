@@ -43,6 +43,10 @@ PY
 
 chmod 600 /etc/portfolio-cms.env
 
+set -a
+source /etc/portfolio-cms.env
+set +a
+
 python -c "
 from app import app
 from extensions import db
