@@ -78,3 +78,8 @@ resource "aws_iam_role_policy" "app_secrets" {
   role   = aws_iam_role.app.id
   policy = data.aws_iam_policy_document.app_secrets.json
 }
+
+resource "aws_iam_role_policy_attachment" "app_ssm" {
+  role       = aws_iam_role.app.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
