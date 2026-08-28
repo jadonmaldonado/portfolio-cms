@@ -12,12 +12,14 @@ from routes.projects import projects_bp
 from routes.certifications import certifications_bp
 from routes.about import about_bp
 from routes.resume import resume_bp
+from routes.api import api_bp
 
 app.register_blueprint(login_bp)
 app.register_blueprint(projects_bp)
 app.register_blueprint(certifications_bp)
 app.register_blueprint(about_bp)
 app.register_blueprint(resume_bp)
+app.register_blueprint(api_bp)
 
 
 @app.route("/")
