@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+
 
 from models.certification import Certification
 from models.project import Project
@@ -7,7 +8,22 @@ from models.site_content import SiteContent
 
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
+@api_bp.after_request
+def add_cors_headers(response):
+    allowed_origins = {
+        "http://localhost:8000",
+        "http://jadonmaldonado.com",
+        "https://jadonmaldonado.com",
+        "https://www.jadonmaldonado.com",
+    }
 
+    origin = request.headers.get("Origin")
+
+    if origin in allowed_origins:
+        response.headers["Access-Control-Allow-Origin"] = origin
+        response.headers["Vary"] = "Origin"
+
+    return response
 
 @api_bp.route("/about", methods=["GET"])
 def about():
