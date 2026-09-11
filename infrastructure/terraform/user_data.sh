@@ -30,14 +30,17 @@ client = boto3.client("secretsmanager", region_name=region)
 response = client.get_secret_value(SecretId=secret_arn)
 secret = json.loads(response["SecretString"])
 
+import shlex
+
+database_url = (
+    f"postgresql+psycopg://{secret['username']}:{secret['password']}"
+    f"@{db_endpoint}:{db_port}/{secret['dbname']}"
+)
+
 with open("/etc/portfolio-cms.env", "w") as f:
-    f.write(
-        "DATABASE_URL="
-        f"postgresql+psycopg://{secret['username']}:{secret['password']}"
-        f"@${db_endpoint}:${db_port}/{secret['dbname']}\n"
-    )
-    f.write("AWS_DEFAULT_REGION=${aws_region}\n")
-    f.write("S3_BUCKET_NAME=${s3_bucket_name}\n")
+    f.write(f"DATABASE_URL={shlex.quote(database_url)}\n")
+    f.write(f"AWS_DEFAULT_REGION={shlex.quote(aws_region)}\n")
+    f.write(f"S3_BUCKET_NAME={shlex.quote(s3_bucket_name)}\n")
     f.write("SECRET_KEY=dev-secret-key\n")
 PY
 
