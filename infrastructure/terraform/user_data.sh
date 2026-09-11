@@ -86,3 +86,13 @@ EOF
 systemctl daemon-reload
 systemctl enable portfolio-cms
 systemctl start portfolio-cms
+
+sleep 5
+echo "===== PORTFOLIO CMS SERVICE STATUS ====="
+systemctl status portfolio-cms --no-pager || true
+
+echo "===== PORT 5000 ====="
+ss -lntp | grep ':5000' || true
+
+echo "===== LOCAL HTTP TEST ====="
+curl -i http://127.0.0.1:5000/ || true
