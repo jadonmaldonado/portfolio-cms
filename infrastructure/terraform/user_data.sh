@@ -26,6 +26,11 @@ import boto3
 secret_arn = "${db_secret_arn}"
 region = "${aws_region}"
 
+db_endpoint = "${db_endpoint}"
+db_port = "${db_port}"
+aws_region = "${aws_region}"
+s3_bucket_name = "${s3_bucket_name}"
+
 client = boto3.client("secretsmanager", region_name=region)
 response = client.get_secret_value(SecretId=secret_arn)
 secret = json.loads(response["SecretString"])
