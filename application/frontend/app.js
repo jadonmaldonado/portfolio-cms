@@ -164,6 +164,40 @@ async function loadProjects() {
     }
 }
 
+async function loadResume() {
+    try {
+        const response = await fetch(`${API_BASE}/api/resume`);
+
+        if (!response.ok) {
+            throw new Error(`API returned ${response.status}`);
+        }
+
+        const resume = await response.json();
+
+        if (!resume.filename || !resume.download_url) {
+            return;
+        }
+
+        const container = document.getElementById("resume-download");
+        container.innerHTML = "";
+
+        container.appendChild(
+            document.createTextNode(`${resume.filename} `)
+        );
+
+        const link = document.createElement("a");
+        link.href = `${API_BASE}${resume.download_url}`;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Download Resume";
+
+        container.appendChild(link);
+    } catch (error) {
+        console.error("Unable to load resume:", error);
+    }
+}
+
 loadAbout();
 loadCertifications();
 loadProjects();
+loadResume();
