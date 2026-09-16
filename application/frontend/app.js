@@ -1,5 +1,4 @@
-const API_BASE =
-    "http://portfolio-cms-alb-1990170921.us-west-1.elb.amazonaws.com";
+const API_BASE = "https://api.jadonmaldonado.com";
 
 async function loadAbout() {
     try {
