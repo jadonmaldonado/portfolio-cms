@@ -65,17 +65,15 @@ def certifications():
     certifications = Certification.query.order_by(Certification.id.desc()).all()
 
     return jsonify([
-        {
-            "id": certification.id,
-            "name": certification.name,
-            "issuer": certification.issuer,
-            "date_earned": str(certification.date_earned)
-            if certification.date_earned
-            else None,
-            "credential_url": certification.credential_url,
-        }
-        for certification in certifications
-    ])
+    {
+        "id": certification.id,
+        "name": certification.name,
+        "issuer": certification.issuer,
+        "credential_url": certification.credential_url,
+        "status": certification.status,
+    }
+    for certification in certifications
+])
 
 
 @api_bp.route("/resume", methods=["GET"])
