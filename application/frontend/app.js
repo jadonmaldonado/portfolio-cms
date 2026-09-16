@@ -22,6 +22,43 @@ async function loadAbout() {
         if (data.about) {
             document.getElementById("portfolio-about").textContent = data.about;
         }
+
+        if (data.email) {
+            const email = document.getElementById("portfolio-email");
+            email.textContent = "Email: ";
+
+            const link = document.createElement("a");
+            link.href = `mailto:${data.email}`;
+            link.textContent = data.email;
+
+            email.appendChild(link);
+        }
+
+        if (data.github) {
+            const github = document.getElementById("portfolio-github");
+            github.textContent = "GitHub: ";
+
+            const link = document.createElement("a");
+            link.href = data.github;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "View Profile";
+
+            github.appendChild(link);
+        }
+
+        if (data.linkedin) {
+            const linkedin = document.getElementById("portfolio-linkedin");
+            linkedin.textContent = "LinkedIn: ";
+
+            const link = document.createElement("a");
+            link.href = data.linkedin;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "View Profile";
+
+            linkedin.appendChild(link);
+        }
     } catch (error) {
         console.error("Unable to load portfolio content:", error);
     }
