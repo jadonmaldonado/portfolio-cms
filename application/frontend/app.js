@@ -27,9 +27,6 @@ async function loadAbout() {
     }
 }
 
-loadAbout();
-loadCertifications();
-
 async function loadCertifications() {
     try {
         const response = await fetch(`${API_BASE}/api/certifications`);
@@ -71,3 +68,65 @@ async function loadCertifications() {
         console.error("Unable to load certifications:", error);
     }
 }
+
+async function loadProjects() {
+    try {
+        const response = await fetch(`${API_BASE}/api/projects`);
+
+        if (!response.ok) {
+            throw new Error(`API returned ${response.status}`);
+        }
+
+        const projects = await response.json();
+
+        if (projects.length === 0) {
+            return;
+        }
+
+        const container = document.getElementById("projects-list");
+        container.innerHTML = "";
+
+        projects.forEach((project) => {
+            const article = document.createElement("article");
+
+            const title = document.createElement("h3");
+            title.textContent = project.title;
+            article.appendChild(title);
+
+            if (project.description) {
+                const description = document.createElement("p");
+                description.textContent = project.description;
+                article.appendChild(description);
+            }
+
+            if (project.tech_stack) {
+                const tech = document.createElement("p");
+                tech.textContent = `Tech: ${project.tech_stack}`;
+                article.appendChild(tech);
+            }
+
+            if (project.status) {
+                const status = document.createElement("p");
+                status.textContent = `Status: ${project.status}`;
+                article.appendChild(status);
+            }
+
+            if (project.github) {
+                const link = document.createElement("a");
+                link.href = project.github;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = "View on GitHub";
+                article.appendChild(link);
+            }
+
+            container.appendChild(article);
+        });
+    } catch (error) {
+        console.error("Unable to load projects:", error);
+    }
+}
+
+loadAbout();
+loadCertifications();
+loadProjects();
