@@ -35,13 +35,21 @@ resource "aws_db_instance" "portfolio" {
     aws_security_group.db.id
   ]
 
-  publicly_accessible     = false
-  multi_az                = false
-  deletion_protection     = false
-  skip_final_snapshot     = true
-  backup_retention_period = 0
+  publicly_accessible = false
+  multi_az            = false
+
+  deletion_protection = true
+
+  skip_final_snapshot       = false
+  final_snapshot_identifier = "${var.project_name}-final"
+
+  backup_retention_period = 7
 
   auto_minor_version_upgrade = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 
   tags = {
     Name = "${var.project_name}-db"
