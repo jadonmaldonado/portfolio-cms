@@ -7,45 +7,71 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <h1 id="portfolio-name">Jadon Maldonado</h1>
-    <p id="portfolio-headline">AWS Cloud Practitioner | Aspiring Cloud & DevOps Engineer</p>
+    <p id="portfolio-headline">AWS Certified Solutions Architect | IT Specialist | Aspiring Cloud Engineer</p>
 
     <section class="about">
         <h2>About Me</h2>
-       <p id="portfolio-about">
-    I'm an IT Specialist with a Bachelor of Science in Computer Information Technology...
+        <p id="portfolio-about">
+            I'm an IT Specialist with a Bachelor of Science in Computer Information Technology and a growing focus on cloud engineering. In my current role, I support enterprise users and infrastructure across endpoint management, networking, security, and cloud-based services. I'm AWS Certified Solutions Architect - Associate and enjoy turning what I learn into hands-on projects. This portfolio is one example: a production-style AWS environment built with Terraform, EC2, Auto Scaling, RDS, S3, CloudFront, Route 53, and other AWS services. My goal is to continue building practical cloud and automation experience while transitioning into a Cloud Engineer role.
         </p>
     </section>
 
     <section class="certifications">
         <h2>Certifications</h2>
         <ul id="certifications-list">
-    <li>AWS Certified Cloud Practitioner (CLF-C02)</li>
-    <li>AWS Certified Solutions Architect - Associate (SAA-C03)</li>
-</ul>
+            <li>
+                AWS Certified Solutions Architect - Associate (SAA-C03) - AWS
+                <a href="https://jadonmaldonado.com/certificates/AWS%20Certified%20Solutions%20Architect%20-%20Associate%20certificate.pdf" target="_blank" rel="noopener noreferrer">View Credential</a>
+            </li>
+            <li>
+                AWS Certified Cloud Practitioner (CLF-C02) - AWS
+                <a href="https://jadonmaldonado.com/certificates/AWS%20Certified%20Cloud%20Practitioner%20certificate.pdf" target="_blank" rel="noopener noreferrer">View Credential</a>
+            </li>
+        </ul>
     </section>
 
     <section class="projects">
-    <h2>Projects</h2>
-    <div id="projects-list"></div>
-</section>
-   
-<section class="resume">
-    <h2>Resume</h2>
-    <p id="resume-download"></p>
-</section>
+        <h2>Projects</h2>
+        <div id="projects-list">
+            <article>
+                <h3>Cloud Portfolio CMS</h3>
+                <p>Designed and deployed a production-style portfolio CMS on AWS using Terraform for Infrastructure as Code. The architecture runs a Flask application on EC2 instances in private subnets behind an Application Load Balancer and Auto Scaling Group, with PostgreSQL on Amazon RDS. Built REST API endpoints that dynamically deliver projects, certifications, contact information, and resume data to a static S3/CloudFront frontend. Implemented Route 53 DNS, ACM HTTPS, IAM roles, Secrets Manager, S3-backed file storage, health checks, automated EC2 bootstrapping, and persistent database backups.</p>
+                <p>Tech: AWS, Terraform, Python, Flask, PostgreSQL, EC2, Auto Scaling, ALB, RDS, S3, CloudFront, Route 53, ACM, IAM, Secrets Manager</p>
+                <p>Status: Published</p>
+                <p><a href="https://github.com/jadonmaldonado/portfolio-cms" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
+            </article>
+        </div>
+    </section>
 
-  <section class="contact">
-    <h2>Contact</h2>
-    <p id="portfolio-email"></p>
-    <p id="portfolio-github"></p>
-    <p id="portfolio-linkedin"></p>
-</section>
+    <section class="resume">
+        <h2>Resume</h2>
+        <p id="resume-download">
+            IT_Resume.pdf
+            <a href="/IT_Resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+        </p>
+    </section>
+
+    <section class="contact">
+        <h2>Contact</h2>
+        <p id="portfolio-email">
+            Email:
+            <a href="mailto:jadonmaldonado@ymail.com">jadonmaldonado@ymail.com</a>
+        </p>
+        <p id="portfolio-github">
+            GitHub:
+            <a href="https://github.com/jadonmaldonado" target="_blank" rel="noopener noreferrer">View Profile</a>
+        </p>
+        <p id="portfolio-linkedin">
+            LinkedIn:
+            <a href="https://www.linkedin.com/in/jadon-maldonado-ajk/" target="_blank" rel="noopener noreferrer">View Profile</a>
+        </p>
+    </section>
 
     <footer>
-        <p>© 2026 Jadon Maldonado — Built on AWS</p>
+        <p>&copy; 2026 Jadon Maldonado - Built on AWS</p>
     </footer>
-<script src="app.js"></script>
+
+    <script src="app.js"></script>
 </body>
 </html>
