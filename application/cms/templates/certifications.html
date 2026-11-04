@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+    <div>
+        <p class="eyebrow">Content Manager</p>
+        <h1>Certifications</h1>
+        <p class="subtitle">Manage your professional certifications.</p>
+    </div>
+</section>
+
+<section class="actions">
+    <div class="card">
+        <h2>Quick Actions</h2>
+        <a class="button" href="{{ url_for('certifications.new_certification') }}">
+            + New Certification
+        </a>
+    </div>
+</section>
+
+<section class="project-list">
+
+{% for certification in certifications %}
+
+<div class="card project-card">
+
+    <div class="project-header">
+        <div>
+            <h2>{{ certification.name }}</h2>
+            <p class="muted">{{ certification.status }}</p>
+        </div>
+    </div>
+
+    <p><strong>Issuer:</strong> {{ certification.issuer }}</p>
+
+    {% if certification.credential_url %}
+        <a href="{{ certification.credential_url }}" target="_blank">
+            Credential
+        </a>
+    {% endif %}
+
+    <div class="project-actions">
+        <a href="{{ url_for('certifications.edit_certification', certification_id=certification.id) }}">Edit</a>
+
+        <form action="{{ url_for('certifications.delete_certification', certification_id=certification.id) }}"
+              method="POST"
+              style="display:inline;">
+
+            <button type="submit"
+                    style="background:none;border:none;color:#2563eb;padding:0;cursor:pointer;text-decoration:underline;">
+                Delete
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</section>
+
+{% endblock %}
